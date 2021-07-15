@@ -1,0 +1,3 @@
+alter table EMPLOYMENT_CITIZEN rename column employment_center_id to employment_center_id__u24014 ;
+alter table EMPLOYMENT_CITIZEN drop constraint FK_EMPLOYMENT_CITIZEN_ON_EMPLOYMENT_CENTER ;
+drop index IDX_EMPLOYMENT_CITIZEN_ON_EMPLOYMENT_CENTER ;

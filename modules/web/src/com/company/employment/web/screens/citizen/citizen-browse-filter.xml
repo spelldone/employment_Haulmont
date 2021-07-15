@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://citizenBrowseFilter.caption"
+        focusComponent="citizensTable"
+        messagesPack="com.company.employment.web.screens.citizen">
+    <data readOnly="true">
+        <collection id="citizensDc"
+                    class="com.company.employment.entity.Citizen">
+            <view extends="_local">
+                <property name="profession" view="_minimal"/>
+            </view>
+            <loader id="citizensDl">
+                <query>
+                    <![CDATA[select e from employment_Citizen e where e.isRegistered=false]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="citizensTable"
+            spacing="true">
+        <groupTable id="citizensTable"
+                    width="100%"
+                    dataContainer="citizensDc">
+            <actions>
+            </actions>
+            <columns>
+                <column id="firstName"/>
+                <column id="lastName"/>
+                <column id="middleName"/>
+                <column id="profession"/>
+                <column id="isWorking"/>
+            </columns>
+            <rowsCount/>
+
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,1 @@
+alter table employment_registered_citizen rename to EMPLOYMENT_REGISTERED_CITIZEN__U71633 ;

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://employmentCenterBrowse.caption"
+        focusComponent="employmentCentersTable"
+        messagesPack="com.company.employment.web.screens.employmentcenter">
+    <data readOnly="true">
+        <collection id="employmentCentersDc"
+                    class="com.company.employment.entity.EmploymentCenter">
+            <view extends="_local">
+                <property name="registrationCard" view="_minimal"/>
+                <property name="vacancy" view="_minimal"/>
+            </view>
+            <loader id="employmentCentersDl">
+                <query>
+                    <![CDATA[select e from employment_EmploymentCenter e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="citizensDc" class="com.company.employment.entity.Citizen">
+            <view extends="_local">
+                <property name="profession" view="_minimal"/>
+            </view>
+            <loader id="citizensDl">
+                <query>
+                    <![CDATA[select e from employment_Citizen e where e.isRegistered=true and e.isWorking=false]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="vacanciesDc" class="com.company.employment.entity.Vacancy" view="vacancy-view">
+            <loader id="vacanciesDl">
+                <query>
+                    <![CDATA[select e from employment_Vacancy e where e.isOpen=true]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="registrationCardsDc" class="com.company.employment.entity.RegistrationCard">
+            <view extends="_local">
+                <property name="citizen" view="_minimal">
+                    <property name="isWorking"/>
+                </property>
+            </view>
+            <loader id="registrationCardsDl">
+                <query>
+                    <![CDATA[select e from employment_RegistrationCard e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="box" margin="true,false,true,false">
+        <buttonsPanel margin="true">
+            <button id="findJob" caption="Find job for selected citizen" stylename="huge"/>
+            <button id="getJob" caption="Get selected job" stylename="huge"/>
+        </buttonsPanel>
+        <hbox id="box" margin="true" spacing="true">
+            <groupTable id="employmentCentersTable"
+                        width="678px"
+                        dataContainer="citizensDc"
+                        height="AUTO"
+            >
+                <columns>
+                    <column id="firstName"/>
+                    <column id="isRegistered"/>
+                    <column id="lastName"/>
+                    <column id="middleName"/>
+                    <column id="isWorking"/>
+                    <column id="profession.name"/>
+                </columns>
+            </groupTable>
+
+            <groupTable id="employmentCentersTable1"
+                        dataContainer="vacanciesDc"
+                        width="525px"
+                        height="AUTO" align="TOP_RIGHT">
+                <columns>
+                    <column id="position"/>
+                    <column id="registrationDate"/>
+                    <column id="employerName"/>
+                    <column id="salary"/>
+                    <column id="rate"/>
+                    <column id="professions"/>
+                </columns>
+            </groupTable>
+        </hbox>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

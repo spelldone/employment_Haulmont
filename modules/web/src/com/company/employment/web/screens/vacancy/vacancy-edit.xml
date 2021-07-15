@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://vacancyEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.employment.web.screens.vacancy">
+    <data>
+        <instance id="vacancyDc"
+                  class="com.company.employment.entity.Vacancy">
+            <view extends="_local">
+                <property name="professions" view="_minimal"/>
+                <property name="employmentCenter" view="_minimal">
+                    <property name="address"/>
+                    <property name="city"/>
+                </property>
+            </view>
+            <loader/>
+            <collection id="professionsDc" property="professions"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="vacancyDc">
+            <column width="350px">
+                <textField id="positionField" property="position"/>
+                <textField id="employerNameField" property="employerName"/>
+                <textField id="salaryField" property="salary"/>
+                <textField id="rateField" property="rate"/>
+                <pickerField id="employmentCenterField" property="employmentCenter">
+                    <actions>
+                        <action id="lookup" type="picker_lookup">
+                            <properties>
+                                <property name="screenId" value="employment_EmploymentCenter.browse2"/>
+                            </properties>
+                        </action>
+                        <action id="clear" type="picker_clear"/>
+                    </actions>
+                </pickerField>
+            </column>
+        </form>
+        <groupBox id="professionsBox" caption="msg://com.company.employment.entity/Vacancy.professions">
+            <table id="professionsTable" dataContainer="professionsDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="professionsTable.add"/>
+                    <button action="professionsTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

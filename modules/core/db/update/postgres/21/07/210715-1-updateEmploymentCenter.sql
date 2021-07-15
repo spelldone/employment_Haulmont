@@ -1,0 +1,1 @@
+drop index IDX_EMPLOYMENT_CENTER_UK_ADRESS ;

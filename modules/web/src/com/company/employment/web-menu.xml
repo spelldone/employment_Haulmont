@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-employment" insertBefore="administration" caption="Employment Center Service">
+        <item screen="employment_Profession.browse" caption="mainMsg://menu_config.employment_Profession.browse"/>
+        <item screen="employment_Citizen.browse" caption="mainMsg://menu_config.employment_Citizen.browse"/>
+        <item screen="employment_Vacancy.browse" caption="mainMsg://menu_config.employment_Vacancy.browse"/>
+        <item screen="employment_RegistrationCard.browse"
+              caption="Registration"/>
+        <item screen="employment_EmploymentCenter.browse"
+              caption="Employment center"/>
+
+    </menu>
+</menu-config>

@@ -1,0 +1,5 @@
+create table EMPLOYMENT_PROFESSION_VACANCY_LINK (
+    PROFESSION_ID uuid,
+    VACANCY_ID uuid,
+    primary key (PROFESSION_ID, VACANCY_ID)
+);
