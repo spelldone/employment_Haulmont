@@ -9,5 +9,6 @@
         <item screen="employment_EmploymentCenter.browse"
               caption="Employment center"/>
 
+
     </menu>
 </menu-config>

@@ -30,7 +30,7 @@
                     <actions>
                         <action id="lookup" type="picker_lookup">
                             <properties>
-                                <property name="screenId" value="employment_EmploymentCenter.browse2"/>
+                                <property name="screenId" value="employment_EmploymentCenter.selectionBrowse"/>
                             </properties>
                         </action>
                         <action id="clear" type="picker_clear"/>

@@ -59,13 +59,13 @@ public class EmploymentCenterBrowse extends StandardLookup<EmploymentCenter> {
             Vacancy vacancy = employmentCentersTable1.getSingleSelected();
             List<RegistrationCard> registrationCards = registrationCardsDc.getMutableItems();
             if (vacancy.getProfessions().contains(citizen.getProfession())) {
-                for (int i = 0; i < registrationCards.size(); i++) {
-                    if (registrationCards.get(i).getCitizen().equals(citizen)) {
-                        registrationCards.get(i).setStartWorkingDate(LocalDateTime.now());
+                for (RegistrationCard registrationCard: registrationCards) {
+                    if (registrationCard.getCitizen().equals(citizen)) {
+                        registrationCard.setStartWorkingDate(LocalDateTime.now());
                         if (vacancy.getRate() > 1 && vacancy.getSalary() > 25000) {
-                            registrationCards.get(i).setIsPaidBenefit(false);
+                            registrationCard.setIsPaidBenefit(false);
                         }
-                        dataManager.commit(registrationCards.get(i));
+                        dataManager.commit(registrationCard);
                         break;
                     }
                 }
@@ -76,7 +76,5 @@ public class EmploymentCenterBrowse extends StandardLookup<EmploymentCenter> {
             }
         }
     }
-
-
 
 }

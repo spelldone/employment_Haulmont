@@ -20,8 +20,6 @@ import java.time.LocalDateTime;
 @LoadDataBeforeShow
 public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
     @Inject
-    private LookupScreenFacet<Citizen, Screen> lookupscreen_2;
-    @Inject
     private PickerField<Citizen> citizenField;
     @Inject
     private InstanceContainer<RegistrationCard> registrationCardDc;
@@ -40,10 +38,6 @@ public class RegistrationCardEdit extends StandardEditor<RegistrationCard> {
 
     }
 
-    @Subscribe("citizenField.lookup")
-    public void onCitizenFieldLookup(Action.ActionPerformedEvent event) {
-        lookupscreen_2.show();
-    }
 
     @Subscribe("commitAndCloseBtn")
     public void onCommitAndCloseBtnClick(Button.ClickEvent event) {
